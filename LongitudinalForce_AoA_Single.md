@@ -1,4 +1,4 @@
-SLR Analysis for Modeling AoA (sweep-dataset)
+SLR Analysis for Modeling AoA 
 ================
 Mohammad Hosseini (<mohammadhosseini@vt.edu>)
 
