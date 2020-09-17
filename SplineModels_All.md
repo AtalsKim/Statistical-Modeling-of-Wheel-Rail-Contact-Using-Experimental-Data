@@ -118,7 +118,7 @@ ggplot(train.creep, aes(creepage, longitudinal.force) ) +
   theme_classic()
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 ## AoA
@@ -154,7 +154,7 @@ ggplot(train.AoA, aes(AoA, longitudinal.force) ) +
   theme_classic()
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ``` r
 ## Wheel load
@@ -190,7 +190,7 @@ ggplot(train.vforce, aes(vertical.force, longitudinal.force) ) +
   theme_classic()
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 <br><br>
 
 ### 2.2 Mutliple Spline Regression Model
@@ -302,7 +302,7 @@ ggplot(train.creep, aes(creepage, longitudinal.force) ) +
   ylab("Longitudinal Force")
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 ## Creepage
@@ -333,7 +333,7 @@ ggplot(train.AoA, aes(AoA, longitudinal.force) ) +
   ylab("Longitudinal Force")
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
 ## Creepage
@@ -364,7 +364,7 @@ ggplot(train.vforce, aes(vertical.force, longitudinal.force) ) +
   ylab("Longitudinal Force")
 ```
 
-![](SplineModel_All_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](SplineModels_All_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 <br>
 
