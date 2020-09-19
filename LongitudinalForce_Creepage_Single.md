@@ -2,15 +2,19 @@ Regression Analysis, Modeling Creepage
 ================
 Mohammad Hosseini (<mohammadhosseini@vt.edu>)
 
-  - [1. Creepage with a Quadratic Polynomial
-    Kernel](#creepage-with-a-quadratic-polynomial-kernel)
-  - [2. Comparison across Models](#comparison-across-models)
-  - [3. Transformations](#transformations)
-  - [4. Conclusion](#conclusion)
+  - [1. Creepage with a Quadratic
+    Polynomial](#creepage-with-a-quadratic-polynomial)
+  - [2. Creepage with Square-root](#creepage-with-square-root)
+  - [3. Creepage with Squared and Square-root
+    Terms](#creepage-with-squared-and-square-root-terms)
+  - [4. Locally Linear Model](#locally-linear-model)
+  - [5. Comparison across Models](#comparison-across-models)
+  - [6. Transformations](#transformations)
+  - [7. Conclusion](#conclusion)
 
 -----
 
-### 1\. Creepage with a Quadratic Polynomial Kernel
+## 1\. Creepage with a Quadratic Polynomial
 
 ``` r
 load("creepage_sweep_100.rda")
@@ -36,23 +40,23 @@ summary(lm.creep2)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -1270.21  -200.88    14.38   187.53  1151.61 
+    ## -1272.23  -202.43    11.02   188.02  1149.26 
     ## 
     ## Coefficients:
     ##             Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)   313.80      11.92   26.32   <2e-16 ***
-    ## creepage     6249.47      28.86  216.56   <2e-16 ***
-    ## creepage2   -2091.52      14.33 -145.95   <2e-16 ***
+    ## (Intercept)   317.31      11.89   26.68   <2e-16 ***
+    ## creepage     6246.59      28.81  216.81   <2e-16 ***
+    ## creepage2   -2090.30      14.30 -146.20   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 275.4 on 4197 degrees of freedom
-    ## Multiple R-squared:  0.9619, Adjusted R-squared:  0.9619 
-    ## F-statistic: 5.301e+04 on 2 and 4197 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 274.6 on 4197 degrees of freedom
+    ## Multiple R-squared:  0.9622, Adjusted R-squared:  0.9622 
+    ## F-statistic: 5.346e+04 on 2 and 4197 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 1.1 Creepage with Polynomial Kernel, Assumptions Check
+### 1.1 Creepage with Polynomial Kernel, Assumptions Check
 
 ``` r
 par(mfrow = c(2,2), mai=c(.7,.7,.2,.2))
@@ -73,9 +77,9 @@ qqnorm(rstudent(lm.creep.tsfd), pch=20, col="seagreen3", main=""); abline(a=0, b
 hist(rstudent(lm.creep.tsfd),freq=FALSE, col="seagreen3", xlab="Studentized Residuals", main="")
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-#### 1.3 Creepage with Square Root
+## 2\. Creepage with Square-root
 
 ``` r
 # Run linear regression
@@ -91,23 +95,23 @@ summary(lm.creep.sqr)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -1144.88  -190.27    -7.56   168.49  1645.82 
+    ## -1145.72  -187.37    -8.41   165.04  1653.41 
     ## 
     ## Coefficients:
     ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)  -1694.65      22.35  -75.84   <2e-16 ***
-    ## creepage     -2986.58      33.69  -88.64   <2e-16 ***
-    ## creepage.sqr  8959.98      57.11  156.90   <2e-16 ***
+    ## (Intercept)  -1703.59      22.15  -76.93   <2e-16 ***
+    ## creepage     -3004.93      33.36  -90.07   <2e-16 ***
+    ## creepage.sqr  8990.79      56.62  158.80   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 259.1 on 4197 degrees of freedom
-    ## Multiple R-squared:  0.9663, Adjusted R-squared:  0.9663 
-    ## F-statistic: 6.018e+04 on 2 and 4197 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 256 on 4197 degrees of freedom
+    ## Multiple R-squared:  0.9672, Adjusted R-squared:  0.9672 
+    ## F-statistic: 6.182e+04 on 2 and 4197 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 1.4 Creepage with Squared Term, Assumptions Check
+### 2.1 Creepage with Squared Term, Assumptions Check
 
 ``` r
 par(mfrow = c(2,2), mai=c(.7,.7,.2,.2))
@@ -120,11 +124,11 @@ qqnorm(rstudent(lm.creep.sqr), pch=20, col="seagreen3", main=""); abline(a=0, b=
 hist(rstudent(lm.creep.sqr),freq=FALSE, col="seagreen3", xlab="Studentized Residuals", main="")
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 <br>
 
-#### 1.5 Creepage with Squared and Square-root Terms
+## 3\. Creepage with Squared and Square-root Terms
 
 ``` r
 # Run linear regression
@@ -140,24 +144,24 @@ summary(lm.creep.sqr2)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -1194.07  -151.11   -14.44   144.58  1070.84 
+    ## -1194.89  -152.27   -14.53   145.45  1067.11 
     ## 
     ## Coefficients:
     ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)   -916.44      29.03 -31.571   <2e-16 ***
-    ## creepage      1103.33     116.74   9.451   <2e-16 ***
-    ## creepage.sqr  5193.66     115.36  45.020   <2e-16 ***
-    ## creepage2     -985.90      27.23 -36.203   <2e-16 ***
+    ## (Intercept)   -934.06      29.20 -31.987   <2e-16 ***
+    ## creepage      1014.52     117.50   8.634   <2e-16 ***
+    ## creepage.sqr  5281.21     116.19  45.455   <2e-16 ***
+    ## creepage2     -966.37      27.36 -35.325   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 226.2 on 4196 degrees of freedom
-    ## Multiple R-squared:  0.9743, Adjusted R-squared:  0.9743 
-    ## F-statistic: 5.308e+04 on 3 and 4196 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 224.8 on 4196 degrees of freedom
+    ## Multiple R-squared:  0.9747, Adjusted R-squared:  0.9747 
+    ## F-statistic: 5.387e+04 on 3 and 4196 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 1.6 Creepage with Squared and Square-root Terms, Assumptions Check
+### 3.1 Creepage with Squared and Square-root Terms, Assumptions Check
 
 ``` r
 par(mfrow = c(2,2), mai=c(.7,.7,.2,.2))
@@ -170,13 +174,13 @@ qqnorm(rstudent(lm.creep.sqr2), pch=20, col="seagreen3", main=""); abline(a=0, b
 hist(rstudent(lm.creep.sqr2),freq=FALSE, col="seagreen3", xlab="Studentized Residuals", main="")
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 <br>
 
-#### 1.7 Locally Linear Model
+## 4\. Locally Linear Model
 
-#### 1.7.1 Clustering
+### 4.1 Clustering
 
 ``` r
 library(mclust, quietly = TRUE)
@@ -185,7 +189,7 @@ creepage.clusters <- Mclust(data=train[, c(5, 1)], G=2:5, modelNames = mclust.op
 plot(creepage.clusters$BIC)
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 <br>
 
@@ -200,7 +204,7 @@ mclust2Dplot(data=train[, c(5, 1)], parameters=creepage.2clusters$parameters, z=
 abline(v=0.6, col=8, lty=2, lwd=2); text(0.35, 5000, "0.6% Creepage", col=2)
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 ## Density plot
@@ -213,9 +217,9 @@ xyD <- matrix(dens(modelName=creepage.2clusters$modelName, data=xy,
 persp(x, y, xyD, theta=-20, xlab="Creepage", ylab="Longitudinal Force", zlab="density")
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
-#### 1.7.2 Locally Linear Regression Model
+### 4.2 Locally Linear Regression Model
 
 ``` r
 ## Add categories to train
@@ -233,24 +237,24 @@ summary(lm.creep.clust)
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -1069.83  -133.64     9.23   140.95   914.25 
+    ## -1102.93  -128.82     9.69   142.16   910.77 
     ## 
     ## Coefficients:
     ##                              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                    114.57      11.38   10.06   <2e-16 ***
-    ## creepage                      6161.27      33.13  185.98   <2e-16 ***
-    ## creepage.clustersC2           3299.65      17.55  188.00   <2e-16 ***
-    ## creepage:creepage.clustersC2 -5303.81      34.68 -152.92   <2e-16 ***
+    ## (Intercept)                    118.15      11.31   10.45   <2e-16 ***
+    ## creepage                      6168.73      33.06  186.61   <2e-16 ***
+    ## creepage.clustersC2           3288.73      17.42  188.78   <2e-16 ***
+    ## creepage:creepage.clustersC2 -5305.35      34.58 -153.42   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 220.3 on 4196 degrees of freedom
-    ## Multiple R-squared:  0.9756, Adjusted R-squared:  0.9756 
-    ## F-statistic: 5.604e+04 on 3 and 4196 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 219.1 on 4196 degrees of freedom
+    ## Multiple R-squared:  0.976,  Adjusted R-squared:  0.9759 
+    ## F-statistic: 5.679e+04 on 3 and 4196 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 1.7.3 Assumptions Check
+### 4.3 Assumptions Check
 
 ``` r
 par(mfrow = c(2,2), mai=c(.7,.7,.2,.2))
@@ -271,33 +275,33 @@ qqnorm(rstudent(lm.creep.clust), pch=20, col="seagreen3", main=""); abline(a=0, 
 hist(rstudent(lm.creep.clust),freq=FALSE, col="seagreen3", xlab="Studentized Residuals", main="")
 ```
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 <br>
 
-### 2\. Comparison across Models
+## 5\. Comparison across Models
 
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->![](SLR_Creepage_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 <br>
 
-### 3\. Transformations
+## 6\. Transformations
 
 To fix the heteroscedasticity, we apply transformations to the
 explanatory variables and the response. Log transformation is typically
 used on such occasions and the results of applying it to our data set is
 shown below.
 
-<br>
-
-![](SLR_Creepage_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](SLR_Creepage_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->![](SLR_Creepage_files/figure-gfm/unnamed-chunk-12-3.png)<!-- -->
+![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->![](LongitudinalForce_Creepage_Single_files/figure-gfm/unnamed-chunk-12-3.png)<!-- -->
 
 We observe that taking the logarithm of the response, in our case, the
 longitudinal force, resolves the non-constant variance; however, it
 heavily skews the distribution of the residuals and makes the non-linear
 pattern stronger.
 
-### 4\. Conclusion
+<br>
+
+## 7\. Conclusion
 
 Comparing the log-transformation and the quadratic polynomial, the
 latter appears to be more plausible since the normality assumption is
