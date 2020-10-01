@@ -2,15 +2,14 @@ SLR Analysis for Modeling AoA (sweep-dataset)
 ================
 Mohammad Hosseini (<mohammadhosseini@vt.edu>)
 
-  - [1. Regressing Longitudinal Force on
-    AoA](#regressing-longitudinal-force-on-aoa)
-  - [2. AoA with a Polynomial Kernel](#aoa-with-a-polynomial-kernel)
-  - [3. AoA, Only Quadratic Term](#aoa-only-quadratic-term)
-  - [4. Comparing Models via ANOVA](#comparing-models-via-anova)
+  - [Data Set](#data-set)
+  - [AoA with a Polynomial Kernel](#aoa-with-a-polynomial-kernel)
+  - [AoA, Quadratic Term Only](#aoa-quadratic-term-only)
+  - [Comparing Models via ANOVA](#comparing-models-via-anova)
 
 -----
 
-### 1\. Regressing Longitudinal Force on AoA
+## Data Set
 
 ``` r
 load("longForce_AoA_100.rda")
@@ -22,60 +21,11 @@ size <- floor(n*0.7)
 train.ind <- sample(n, size, replace=FALSE)
 train <- data[train.ind,]
 test <- data[-train.ind,]
-
-# Running linear regressions
-lm.AoA <- lm(train$longitudinal.force ~ train$AoA)
-
-# Plotting the regression lines
-plot(train$AoA, train$longitudinal.force, xlab="AoA",
-     ylab="Longitudinal Force", col=1, pch=20, main=""); abline(lm.AoA, col="indianred1", lwd=2)
 ```
-
-![](LongitudinalForce_AoA_Single_files/figure-gfm/SLRs.long-1.png)<!-- -->
-
-``` r
-summary(lm.AoA)
-```
-
-    ## 
-    ## Call:
-    ## lm(formula = train$longitudinal.force ~ train$AoA)
-    ## 
-    ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -1093.5  -292.2     6.3   288.7  1114.9 
-    ## 
-    ## Coefficients:
-    ##             Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept) 4165.231      6.751 616.952  < 2e-16 ***
-    ## train$AoA     66.661     11.683   5.706 1.26e-08 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 391.3 on 3358 degrees of freedom
-    ## Multiple R-squared:  0.009602,   Adjusted R-squared:  0.009307 
-    ## F-statistic: 32.56 on 1 and 3358 DF,  p-value: 1.258e-08
 
 <br>
 
-#### 1.1 Checking SLR Assumptions
-
-``` r
-par(mfrow = c(2, 2), mai=c(.7,.7,.2,.2))
-plot(train$AoA, train$longitudinal.force, xlab="AoA",
-     ylab="Longitudinal Force", col=1, pch=20, main=""); abline(lm.AoA, col="indianred1", lwd=2)
-## AoA
-plot(lm.AoA$fitted, rstudent(lm.AoA),xlab="Fitted values", ylab="Studentized Residuals",
-     col=1, main=""); abline(h=0, col=8, lty=2)
-qqnorm(rstudent(lm.AoA), pch=20, col="indianred1", main=""); abline(a=0, b=1, lty=2)
-hist(rstudent(lm.AoA),freq=FALSE, col="indianred1", xlab="Studentized Residuals", main="")
-```
-
-![](LongitudinalForce_AoA_Single_files/figure-gfm/assumptions.check-1.png)<!-- -->
-
-<br>
-
-### 2\. AoA with a Polynomial Kernel
+## AoA with a Polynomial Kernel
 
 ``` r
 # Running linear regression
@@ -104,23 +54,23 @@ summary(lm.AoA2)
     ## 
     ## Residuals:
     ##     Min      1Q  Median      3Q     Max 
-    ## -979.72 -144.95   -3.89  136.33  767.70 
+    ## -980.52 -146.02   -8.43  139.51  843.69 
     ## 
     ## Coefficients:
     ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)  4530.476      5.645  802.63   <2e-16 ***
-    ## AoA            71.124      6.496   10.95   <2e-16 ***
-    ## AoA2        -1093.751     12.624  -86.64   <2e-16 ***
+    ## (Intercept)  4531.095      5.627  805.19   <2e-16 ***
+    ## AoA            70.270      6.529   10.76   <2e-16 ***
+    ## AoA2        -1091.252     12.651  -86.26   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 217.6 on 3357 degrees of freedom
-    ## Multiple R-squared:  0.694,  Adjusted R-squared:  0.6938 
-    ## F-statistic:  3806 on 2 and 3357 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 217.8 on 3357 degrees of freedom
+    ## Multiple R-squared:  0.692,  Adjusted R-squared:  0.6918 
+    ## F-statistic:  3771 on 2 and 3357 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 2.1 Checking SLR Assumptions
+### Checking LR Assumptions
 
 ``` r
 par(mfrow = c(2, 2), mai=c(.7,.7,.2,.2))
@@ -139,7 +89,7 @@ hist(rstudent(lm.AoA2),freq=FALSE, col="indianred1", xlab="Studentized Residuals
 ![](LongitudinalForce_AoA_Single_files/figure-gfm/assumptions.check2-1.png)<!-- -->
 <br>
 
-### 3\. AoA, Only Quadratic Term
+## AoA, Quadratic Term Only
 
 ``` r
 # Running linear regression
@@ -165,22 +115,22 @@ summary(lm.AoA3)
     ## 
     ## Residuals:
     ##     Min      1Q  Median      3Q     Max 
-    ## -944.98 -151.39   -3.97  142.36  753.40 
+    ## -945.77 -154.46   -8.88  141.32  775.67 
     ## 
     ## Coefficients:
     ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)  4530.265      5.744  788.76   <2e-16 ***
-    ## AoA2        -1092.654     12.845  -85.06   <2e-16 ***
+    ## (Intercept)  4530.432      5.722  791.70   <2e-16 ***
+    ## AoA2        -1090.054     12.865  -84.73   <2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 221.4 on 3358 degrees of freedom
-    ## Multiple R-squared:  0.683,  Adjusted R-squared:  0.6829 
-    ## F-statistic:  7236 on 1 and 3358 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 221.5 on 3358 degrees of freedom
+    ## Multiple R-squared:  0.6813, Adjusted R-squared:  0.6812 
+    ## F-statistic:  7180 on 1 and 3358 DF,  p-value: < 2.2e-16
 
 <br>
 
-#### 3.1 Checking SLR Assumptions
+### Checking LR Assumptions
 
 ``` r
 par(mfrow = c(2, 2), mai=c(.7,.7,.2,.2))
@@ -200,7 +150,7 @@ hist(rstudent(lm.AoA3),freq=FALSE, col="indianred1", xlab="Studentized Residuals
 
 <br>
 
-### 4\. Comparing Models via ANOVA
+## Comparing Models via ANOVA
 
 ``` r
 anova(lm.AoA2,lm.AoA3)
@@ -210,9 +160,9 @@ anova(lm.AoA2,lm.AoA3)
     ## 
     ## Model 1: longitudinal.force ~ AoA + AoA2
     ## Model 2: longitudinal.force ~ AoA2
-    ##   Res.Df       RSS Df Sum of Sq     F    Pr(>F)    
-    ## 1   3357 158915753                                 
-    ## 2   3358 164591482 -1  -5675728 119.9 < 2.2e-16 ***
+    ##   Res.Df       RSS Df Sum of Sq      F    Pr(>F)    
+    ## 1   3357 159198982                                  
+    ## 2   3358 164692694 -1  -5493711 115.84 < 2.2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
