@@ -4,7 +4,7 @@ Mohammad Hosseini (<mohammadhosseini@vt.edu>)
 
 -----
 
-### Dataset Preparation & Single Models
+## Dataset Preparation & Single Models
 
 ``` r
 ## Load data
@@ -21,7 +21,7 @@ test <- data[-train.ind,]
 
 <br>
 
-### Multiple Regression
+## Multiple Regression
 
 Before running the regression, we check for multicollinearity among the
 independent variables.
@@ -73,7 +73,7 @@ summary(multiple.reg)
 
 <br>
 
-### Model Selection via BIC
+## Model Selection via BIC
 
 ``` r
 ## Step-wise selection
@@ -118,7 +118,7 @@ summary(multiple.fwbk)
 
 <br>
 
-### Manual Selection
+## Manual Selection
 
 ``` r
 ## Construct the model
@@ -165,9 +165,9 @@ confint(multiple.reg, level = 0.95)
 
 <br>
 
-### Prediction Error
+## Prediction Error
 
-#### Model Selected via BIC
+### Model Selected via BIC
 
 ``` r
 ## Prediction Error
@@ -188,7 +188,7 @@ print(pred.errors)
 
 <br>
 
-#### Model Selected Manually
+### Model Selected Manually
 
 ``` r
 ## Prediction Error
