@@ -149,43 +149,37 @@ summary(multiple.fwbk)
 
 ``` r
 ## Step-wise selection
-multiple.null <- lm(Lateral_Force ~ 1, data = train)
-multiple.full <- lm(Lateral_Force ~ .^2, data = train)
+multiple.null <- lm(Lateral_Force ~ 1, data = train2[,-5])
+multiple.full <- lm(Lateral_Force ~ .^2, data = train2[,-5])
 multiple.fwbk <- step(multiple.null, scope=formula(multiple.full),
-                      direction="both", k=log(nrow(train)), trace=0)
+                      direction="both", k=log(nrow(train2[,-5])), trace=0)
 summary(multiple.fwbk)
 ```
 
     ## 
     ## Call:
-    ## lm(formula = Lateral_Force ~ AoA + Load + Longitudinal_Force + 
-    ##     Creepage + AoA:Load + AoA:Longitudinal_Force + AoA:Creepage + 
-    ##     Load:Creepage + Longitudinal_Force:Creepage + Load:Longitudinal_Force, 
-    ##     data = train)
+    ## lm(formula = Lateral_Force ~ AoA + Load + Creepage + AoA:Load + 
+    ##     AoA:Creepage + Load:Creepage, data = train2[, -5])
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -2562.38  -164.85     1.52   170.59  1824.11 
+    ## -1857.53  -199.57    -6.96   187.27  2405.29 
     ## 
     ## Coefficients:
-    ##                               Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)                 -1.352e+02  9.184e-01  -147.2   <2e-16 ***
-    ## AoA                          7.520e+02  1.524e+00   493.5   <2e-16 ***
-    ## Load                         1.553e-01  2.305e-04   673.6   <2e-16 ***
-    ## Longitudinal_Force          -1.136e-01  1.082e-03  -105.0   <2e-16 ***
-    ## Creepage                    -1.205e+02  8.724e-01  -138.2   <2e-16 ***
-    ## AoA:Load                     5.557e-01  3.772e-04  1473.3   <2e-16 ***
-    ## AoA:Longitudinal_Force      -3.402e-01  1.104e-03  -308.1   <2e-16 ***
-    ## AoA:Creepage                -5.700e+02  1.082e+00  -526.9   <2e-16 ***
-    ## Load:Creepage                1.794e-01  3.166e-04   566.6   <2e-16 ***
-    ## Longitudinal_Force:Creepage -2.341e-01  6.757e-04  -346.5   <2e-16 ***
-    ## Load:Longitudinal_Force     -1.669e-05  8.950e-08  -186.5   <2e-16 ***
+    ##                 Estimate Std. Error   t value Pr(>|t|)    
+    ## (Intercept)   -8.336e+01  1.114e+00   -74.845  < 2e-16 ***
+    ## AoA            1.231e+03  1.432e+00   859.773  < 2e-16 ***
+    ## Load           1.521e-01  1.944e-04   782.320  < 2e-16 ***
+    ## Creepage       3.062e+00  9.624e-01     3.182  0.00146 ** 
+    ## AoA:Load       4.570e-01  1.695e-04  2696.350  < 2e-16 ***
+    ## AoA:Creepage  -9.887e+02  9.396e-01 -1052.279  < 2e-16 ***
+    ## Load:Creepage -8.550e-03  1.674e-04   -51.067  < 2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 288.5 on 1343989 degrees of freedom
-    ## Multiple R-squared:  0.9698, Adjusted R-squared:  0.9698 
-    ## F-statistic: 4.321e+06 on 10 and 1343989 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 363.2 on 1343993 degrees of freedom
+    ## Multiple R-squared:  0.9522, Adjusted R-squared:  0.9522 
+    ## F-statistic: 4.46e+06 on 6 and 1343993 DF,  p-value: < 2.2e-16
 
 <br>
 
