@@ -295,7 +295,7 @@ ggplot(data.pred, aes(x=x)) +
 plot(cdf.var1,  verticals = TRUE, do.points = FALSE, col = "#69b3a2", lwd = 2,
      main = "Lower Bound of 95% CI of Predictions", ylab = "Empirical CDF", xlab = "")
 lines(cdf.var2,  verticals = TRUE, do.points = FALSE, col = "#404080", lwd = 2)
-legend("topleft", c("Regression", "Residual Bootstrap"),
+legend("topleft", c("Regression", "SVR Residual Bootstrap"),
        lty=c(1, 1), lwd=c(2, 2), col=c("#69b3a2", "#404080"))
 ```
 
@@ -334,7 +334,7 @@ ggplot(data.pred, aes(x=x)) +
 plot(cdf.var3,  verticals = TRUE, do.points = FALSE, col = "#69b3a2", lwd = 2,
      main = "Upper Bound of 95% CI of Predictions", ylab = "Empirical CDF", xlab = "")
 lines(cdf.var4,  verticals = TRUE, do.points = FALSE, col = "#404080", lwd = 2)
-legend("topleft", c("Regression", "Residual Bootstrap"),
+legend("topleft", c("Regression", "SVR Residual Bootstrap"),
        lty=c(1, 1), lwd=c(2, 2), col=c("#69b3a2", "#404080"))
 ```
 
